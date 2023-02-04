@@ -1,0 +1,438 @@
+﻿@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Openk Tecnologia - Soluções em ecommerce" />
+    <meta name="description" content=" " />
+    <meta name="keywords" content=" " />
+    <link rel="shortcut icon" href="~/img/notificacao_logo_footer.png" type="image/x-icon" />
+    <link rel="icon" type="image/png" href="~/img/notificacao_logo_footer.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: { "families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"] },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });
+    </script>
+    <title>O Portal para matrículas | Programa de Pós-Graduação em Computação.</title>
+    <!--end::Page Vendors -->
+    <link href="~/assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/custom/style.custom.css" rel="stylesheet" type="text/css" />
+    <script>
+        function initLoader() {
+            mApp.block("#login__wrapper",
+                { overlayColor: "#000000", type: "loader", state: "success", message: "Fazendo login, aguarde..." });
+        }
+    </script>
+</head>
+<body class="m--skin- m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
+
+    <form name="login" id="login" onsubmit="initLoader()" style="height: 100%;">
+
+        <div class="m-grid m-grid--hor m-grid--root m-page wrap-page-login">
+            <!--<div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-grid--tablet-and-mobile m-grid--hor-tablet-and-mobile m-login m-login--1 /*(Request.QueryString["passwordExpired"] !=null && Convert.ToBoolean(Request.QueryString["passwordExpired"]) ? "m-login--signup" : "m-login--signin")" id="m_login">-->
+            <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-grid--tablet-and-mobile m-grid--hor-tablet-and-mobile m-login m-login--1" id="m_login">
+                <div class="m-grid__item m-grid__item--order-tablet-and-mobile-2 m-login__aside m-login--signup" id="login__wrapper">
+                    <div class="m-stack m-stack--hor m-stack--desktop">
+                        <div class="m-stack__item m-stack__item--fluid">
+
+                            <div class="m-login__wrapper">
+                                <div class="m-login__logo top-logo">
+                                    <!--<img src="openk.png">-->
+                                    <img src="~/img/imagem_login_ufu_transparente.png" style="max-height:52px;">
+                                </div>
+
+                                <div class="m-login__signin">
+                                    <div class="m-login__head">
+                                        <!--<h3 class="m-login__title text-muted">Por favor, entre com seu usuário e senha para acessar o sistema.</h3>-->
+
+                                    </div>
+
+                                    <div class="m-login__form m-form">
+                                        <div id="DivMensagem" style="display: none"></div>
+
+                                        <div class="form-group m-form__group">
+                                            <input type="text" id="username" class="form-control m-input" placeholder="Login" autocomplete="off" />
+                                        </div>
+                                        <div class="form-group m-form__group">
+                                            <input type="password" id="password" class="form-control m-input m-login__form-input--last" placeholder="Senha" autocomplete="off" />
+                                        </div>
+
+                                        <div class="form-group m-form__group">
+                                            <select class="form-control" id="perfil_pos_login" style="padding-bottom: 5px;">
+                                                <option value="0" selected>Selecione o Tipo da Pós</option>
+                                                <option value="1">Mestrado Regular</option>
+                                                <option value="2">Doutorado</option>
+                                                <option value="3">Mestrado Especial</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="m-login__form-action">
+                                            @*<button type="submit" id="btnlogin" class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-info m-btn--gradient-to-accent">Entrar</button>*@
+                                            <button type="submit" id="btnlogin" class="btn m-btn m-btn--pill m-btn--air m-btn--gradient-from-focus m-btn--gradient-to-danger">Entrar</button>
+                                        </div>
+
+                                        <div class="row m-login__form-sub">
+                                            <div class="col m--align-center">
+                                                <a href="javascript:;" id="m_login_account_create" class="m-link">
+                                                    Criar Conta
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="row m-login__form-sub">
+                                            <div class="col m--align-center">
+                                                <a href="javascript:;" id="m_login_forget_password" class="m-link">
+                                                    Esqueceu sua senha?
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="m-login__signup"> <!--Redefinir a Senha-->
+                                    <div class="m-login__head">
+                                        <h3 class="m-login__title">Redefinir senha</h3>
+                                        <div class="m-login__desc">Sua senha expirou para prosseguir favor redefinir sua senha</div>
+                                    </div>
+                                    <div class="m-login__form m-form">
+                                        <div id="DivMensagem2" style="display: none"></div>
+                                        <input type="hidden" id="userId" />
+                                        <div class="form-group m-form__group">
+                                            <input class="form-control m-input" type="password" placeholder="Senha Atual" name="fullname" id="senha_atual" autocomplete="off" />
+                                        </div>
+                                        <div class="form-group m-form__group">
+                                            <input class="form-control m-input" type="password" placeholder="Nova senha" name="password" id="senhaNova">
+                                        </div>
+                                        <div class="form-group m-form__group">
+                                            <input class="form-control m-input m-login__form-input--last" type="password" placeholder="Confirmar nova senha" name="rpassword" id="senhaNova2">
+                                        </div>
+                                        <div class="m-login__form-action">
+                                            <button type="submit" id="btnResetarSenha" class="btn m-btn m-btn--pill m-btn--air m-btn--gradient-from-focus m-btn--gradient-to-danger">Resetar Senha</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="m-login__forget-password" > <!--Esqueceu sua senha?-->
+                                    <div class="m-login__head">
+                                        <h3 class="m-login__title">Esqueceu sua senha?</h3>
+                                        <div class="m-login__desc">Informe seu Login e seu Email cadastrado para que possamos redefinir sua senha:</div>
+                                    </div>
+                                    <div class="m-login__form m-form">
+                                        <div class="form-group m-form__group">
+                                            <input class="form-control m-input" type="text" placeholder="Login" name="login_forget" id="login_forget" autocomplete="off" />
+                                        </div>
+                                        <div class="form-group m-form__group">
+                                            <input class="form-control m-input" type="text" placeholder="Email" name="email_forget" id="email_forget" autocomplete="off">
+                                        </div>
+                                        <div class="m-login__form-action">
+                                            @*<button id="m_login_forget_password_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">Request</button>*@
+                                            <button id="m_login_forget_password_cancel" class="btn btn-outline-focus m-btn m-btn--pill m-btn--custom">Cancelar</button>
+                                            <button id="m_login_forget_password_generate" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">Gerar Senha</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="m-login__account__create"> <!--Criar Conta-->
+                                    <div class="m-login__head">
+                                        <h3 class="m-login__title">Criar Conta</h3>
+                                        <div class="m-login__desc">Preencha todas as informações abaixo, para criar seu usuário</div>
+                                    </div>
+                                    <div class="m-login__form m-form">
+                                        <div id="DivMensagem2" style="display: none"></div>
+                                        <input type="hidden" id="userId" />
+                                        <div class="form-group m-form__group">
+                                            <input class="form-control m-input" type="text" placeholder="Nome completo" name="primeiro_nome_conta" id="nome_completo_conta" autocomplete="off" />
+                                        </div>
+                                        <div class="form-group m-form__group">
+                                            <input class="form-control m-input" type="text" placeholder="Email" name="email_conta" autocomplete="off" id="email_conta">
+                                        </div>
+                                        <div class="form-group m-form__group">
+                                            <input class="form-control m-input" type="text" placeholder="Login" name="login_conta" id="login_conta">
+                                        </div>
+                                        <div class="form-group m-form__group">
+                                            <input class="form-control m-input" type="password" placeholder="Password" name="password_conta" id="password_conta">
+                                        </div>
+                                        <div class="form-group m-form__group">
+                                            <input class="form-control m-input" type="number" placeholder="CPF" name="cpf_conta" id="cpf_conta">
+                                        </div>
+                                        <div class="form-group m-form__group">
+                                            <select class="form-control" id="perfil_pos_conta_login" style="padding-bottom: 5px;">
+                                                <option value="0" selected>Selecione o Tipo da Pós</option>
+                                                <option value="1">Mestrado Regular</option>
+                                                <option value="2">Doutorado</option>
+                                                <option value="3">Mestrado Especial</option>
+                                            </select>
+                                        </div>
+                                         <div class="form-group m-form__group"></div>
+                                        <div class="m-login__form-action">
+                                            @*<button type="submit" id="btnlogin" class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-info m-btn--gradient-to-accent">Entrar</button>*@
+                                            <button id="m_login_account_create_cancel" class="btn btn-outline-focus m-btn m-btn--pill m-btn--custom">Cancelar</button>
+                                            <button type="submit" id="btnCriarConta" class="btn m-btn m-btn--pill m-btn--air m-btn--gradient-from-focus m-btn--gradient-to-danger">Criar Conta</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-grid__item m-grid__item--fluid m-grid m-grid--center m-grid--hor m-grid__item--order-tablet-and-mobile-1	m-login__content" style="background-image: url(../assets/app/media/img/bg/bg-2.jpg)">
+                    <div class="m-grid__item m-grid__item--middle">
+                        <h3 class="m-login__welcome"><small>Bem vindo ao</small> Portal da Pós Graduação</h3>
+                        <p class="m-login__msg">
+                            O Portal para matrículas | Programa de Pós-Graduação em Computação.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end:: Page -->
+        <!--begin::Base Scripts -->
+        <script src="~/assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
+        <script src="~/assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
+        <!--end::Base Scripts -->
+        <!--begin::Page Snippets -->
+        <script src="~/assets/snippets/custom/pages/user/login.js" type="text/javascript"></script>
+        <!--end::Page Snippets -->
+
+        <script>
+                $(document).ready(function () {
+                    var falsee = false;
+                    if (falsee/*'Request.QueryString["passwordExpired"]'*/) {
+                        $("#btnlogin").prop("disabled", true);
+                        console.log('desabilitou');
+                    }
+
+                    $(".m-login__signup").hide();
+                    $(".m-login__forget-password").hide();
+                    $(".m-login__account__create").hide();
+
+                    $("body").addClass("show").find("#username").focus();
+
+                });
+
+            
+                $("#m_login_forget_password").bind("click", function (e) { //Exibir esqueceu a senha
+                    e.preventDefault();
+                    $(".m-login__forget-password").show();
+                });
+
+                $("#m_login_forget_password_cancel").bind("click", function (e) { //Esconder o Esqueceu a Senha
+                    e.preventDefault();
+                    $(".m-login__forget-password").hide();
+                });
+
+                $("#m_login_account_create").bind("click", function (e) { //Exibir Criar a Conta
+                    e.preventDefault();
+                    $(".m-login__account__create").show();
+                    $(".m-login__signin").hide();
+                });
+
+                $("#m_login_account_create_cancel").bind("click", function (e) { //Esconder o Criar a Conta
+                    e.preventDefault();
+                    $(".m-login__account__create").hide();
+                    $(".m-login__signin").show();
+                });
+
+                $("#btnlogin").bind("click", function (e) {
+                        e.preventDefault();
+
+                  $("#username, #password, #btnlogin").prop("disabled", true);
+
+                    mApp.block("#login__wrapper", { overlayColor: "#000000", type: "loader", state: "success", message: "Fazendo login, aguarde..." });
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/User/Login',
+                        cache: false,
+                        data: { username: $("#username").val(), password: $("#password").val(), perfil_conta: $("#perfil_pos_login option:selected").val() },
+                        success: function (data) {
+                            mApp.unblock("#login__wrapper");
+                            if (data.success) {
+                                $(".wrap-page-login").fadeOut(300);
+                                mApp.block("body", { overlayColor: "#000000", type: "loader", state: "success", message: "Carregando, aguarde..." });
+                                
+                                console.log("Member Id");
+                                console.log(data.userId);
+                                console.log("Member perfilId");
+                                console.log(data.perfilId);
+                                
+                                setTimeout(function () {
+                                //window.location.href = '/Home/Index?id=' + data.userId + '&perfil_id=' + data.perfilId;
+                                window.location.href = '@Url.Action("Index", "Home")';
+         
+                                //window.location.href = url;
+                                /*
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/Home/Index',
+                                    cache: false,
+                                    data: { id: data.userId, perfil_id: data.perfilId },
+                                    beforeSend: function () {
+                                        //mApp.unblock("#login__wrapper", { overlayColor: "#000000", type: "loader", state: "success", message: (block ? "Bloqueando" : "Desbloqueando") + " o usuário, aguarde..." });
+                                        mApp.unblock("#login__wrapper");
+                                    }
+                                });*/
+                                }, 500);
+
+                            } else {
+                                $("#username, #password, #btnlogin").prop("disabled", false);
+
+                                /*if (data.message == "Sua senha expirou, por favor redefina a senha!") {
+                                    swal("Senha expirada!", data.message, "info").then(function () {
+                                        window.location.href = '../user/login?id=' + data.userId + '&passwordExpired=true';
+                                    });
+                                } else {
+                                    swal("Falha no login!", data.message, "error");
+                                }*/
+                            if (data.message == "Sua senha expirou, por favor redefina a senha!") {
+                                $("#userId").val(data.userId);
+                                $(".m-login__signin").hide();
+                                $(".m-login__signup").show();
+                            } else {
+                                swal("Falha no login!", data.message, "error");
+                            }
+                            }
+                        },
+                        error: function (txt) {
+                            $("#username, #password, #btnlogin").prop("disabled", false);
+                                mApp.unblock("#login__wrapper");
+                                swal("Falha no login!", "Usuário ou senha inválidos", "error");
+                        }
+                    });
+                });
+
+                $("#btnResetarSenha").bind('click', function (e) {
+                    e.preventDefault();
+                    //var userId = parseInt('1'/*'(Request.QueryString["id"])'*/);
+                    var userId = $("#userId").val();
+                    console.log(userId);
+                    console.log($("#senhaNova").val(), $("#senhaNova2").val())
+                    if ($("#senhaNova").val() == $("#senhaNova2").val()) {
+                        console.log('resetar', userId, $("#senhaNova2").val());
+                        mApp.block("#login__wrapper", { overlayColor: "#000000", type: "loader", state: "success", message: "Resetando senha, aguarde..." });
+                        $.ajax({
+                            type: 'POST',
+                            url: '/User/NewPassword',
+                            cache: false,
+                            data: {
+                                userId: userId, password: $("#senha_atual").val(), newPassword: $("#senhaNova2").val()
+                            },
+                            success: function (data) {
+                                mApp.unblock("#login__wrapper");
+                                console.log(data.success)
+                                if (data.success) {
+
+                                    swal("Senha alterada com sucesso!", "", "success").then(
+                                        $("#username, #password, #btnlogin").prop("disabled", false)
+                                    ).then(
+                                        $("#username").val(data.username),
+                                        $("#password").val(data.password),
+                                        $("#btnlogin").click()
+                                    );
+
+                                } else {
+                                    $("#username, #password, #btnlogin").prop("disabled", false);
+
+                                    swal("Falha no login!", data.message, "error");
+                                    mApp.unblock("#login__wrapper");
+                                }
+                            },
+                            error: function (txt) {
+                                console.log('não foi no sucesso')
+                                $("#username, #password, #btnlogin").prop("disabled", false);
+                                mApp.unblock("#login__wrapper");
+                                swal("Falha no login!", "Usuário ou senha inválidos", "error");
+                            }
+                        });
+                    }
+                    else {
+                        swal("Atenção!", "Senhas não confere", "warning");
+                        $("#senhaNova2").css('color', 'red');
+                        $("#senhaNova").css('color', 'red');
+
+                    }
+                });
+
+                $("#m_login_forget_password_generate").bind("click", function (e) {
+                    e.preventDefault();
+                    mApp.block("#login__wrapper", { overlayColor: "#000000", type: "loader", state: "success", message: "Gerando senha, aguarde..." });
+                    $.ajax({
+                        type: 'POST',
+                        url: '/User/SetRandomPassword',
+                        cache: false,
+                        data: { login: $("#login_forget").val(), email: $("#email_forget").val() },
+                        success: function (data) {
+                            if (data.success) {
+                                mApp.unblock("#login__wrapper");
+                                swal("Sucesso!", "Uma nova senha foi enviada para o email: " + $("#email_forget").val() + ". Verifique sua caixa de entrada.", "success").then(
+                                    function () {
+                                        window.location.reload();
+                                    }
+                                );
+                            } else {
+                                mApp.unblock("#login__wrapper");
+                                swal("Houve um problema!", data.message, "error");
+                            }
+                        },
+                        error: function () {
+                            mApp.unblock("#login__wrapper");
+                            swal("Houve um problema!", "Por favor tente novamente.", "error");
+                        }
+                    });
+                });
+
+                $("#btnCriarConta").bind('click', function (e) {
+                    e.preventDefault();
+
+                        mApp.block("#login__wrapper", { overlayColor: "#000000", type: "loader", state: "success", message: "Resetando senha, aguarde..." });
+                        $.ajax({
+                            type: 'POST',
+                            url: '/User/SaveNewUser',
+                            cache: false,
+                            data: {
+                                nome_completo_conta: $("#nome_completo_conta").val(), 
+                                email_conta: $("#email_conta").val(),
+                                login_conta: $("#login_conta").val(),
+                                password_conta: $("#password_conta").val(),
+                                cpf_conta: $("#cpf_conta").val(),
+                                perfil_pos_conta_login: $("#perfil_pos_conta_login option:selected").val()
+                            },
+                            success: function (data) {
+                                mApp.unblock("#login__wrapper");
+                                console.log(data.success)
+                                if (data.success) {
+
+                                swal("Sucesso!", data.message, "success");
+                                    window.location.reload();
+
+                                } else {
+                                    swal("Falha ao criar conta!", data.message, "error");
+                                    mApp.unblock("#login__wrapper");
+                                }
+                            },
+                            error: function (txt) {
+                                mApp.unblock("#login__wrapper");
+                                swal("Falha na criação da conta!", "Falha interna, contate o servidor", "error");
+                            }
+                        });
+                });
+                
+
+        </script>
+    </form>
+</body>
+</html>
+
+

@@ -1,0 +1,72 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Ufu.Facom.Ppgco.Web
+build_property.RootNamespace = Ufu.Facom.Ppgco.Web
+build_property.ProjectDir = E:\OneDrive - ufu.br\Documentos\TCC 2 - DOCUMENTAÇÕES\painel-posgraduacao\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = E:\OneDrive - ufu.br\Documentos\TCC 2 - DOCUMENTAÇÕES\painel-posgraduacao
+build_property._RazorSourceGeneratorDebug = 
+
+[E:/OneDrive - ufu.br/Documentos/TCC 2 - DOCUMENTAÇÕES/painel-posgraduacao/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/OneDrive - ufu.br/Documentos/TCC 2 - DOCUMENTAÇÕES/painel-posgraduacao/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/OneDrive - ufu.br/Documentos/TCC 2 - DOCUMENTAÇÕES/painel-posgraduacao/Views/Inscricoes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5zY3JpY29lc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/OneDrive - ufu.br/Documentos/TCC 2 - DOCUMENTAÇÕES/painel-posgraduacao/Views/Inscricoes/_ResultsDoutorado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5zY3JpY29lc1xfUmVzdWx0c0RvdXRvcmFkby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/OneDrive - ufu.br/Documentos/TCC 2 - DOCUMENTAÇÕES/painel-posgraduacao/Views/Inscricoes/_ResultsMestradoEspecial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5zY3JpY29lc1xfUmVzdWx0c01lc3RyYWRvRXNwZWNpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/OneDrive - ufu.br/Documentos/TCC 2 - DOCUMENTAÇÕES/painel-posgraduacao/Views/Inscricoes/_ResultsMestradoRegular.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5zY3JpY29lc1xfUmVzdWx0c01lc3RyYWRvUmVndWxhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/OneDrive - ufu.br/Documentos/TCC 2 - DOCUMENTAÇÕES/painel-posgraduacao/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/OneDrive - ufu.br/Documentos/TCC 2 - DOCUMENTAÇÕES/painel-posgraduacao/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/OneDrive - ufu.br/Documentos/TCC 2 - DOCUMENTAÇÕES/painel-posgraduacao/Views/Solicitacoes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29saWNpdGFjb2VzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/OneDrive - ufu.br/Documentos/TCC 2 - DOCUMENTAÇÕES/painel-posgraduacao/Views/User/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/OneDrive - ufu.br/Documentos/TCC 2 - DOCUMENTAÇÕES/painel-posgraduacao/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/OneDrive - ufu.br/Documentos/TCC 2 - DOCUMENTAÇÕES/painel-posgraduacao/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/OneDrive - ufu.br/Documentos/TCC 2 - DOCUMENTAÇÕES/painel-posgraduacao/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-chg8yt9eeo
+
+[E:/OneDrive - ufu.br/Documentos/TCC 2 - DOCUMENTAÇÕES/painel-posgraduacao/Views/Shared/_LayoutLogin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = b-jt3hohzytm

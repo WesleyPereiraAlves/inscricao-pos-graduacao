@@ -1,0 +1,855 @@
+﻿@model Ufu.Facom.Ppgco.Web.Models.Usuario
+@{
+    var memberId = ViewBag.UserId;
+    var perfilId = ViewBag.PerfilId;
+}
+
+<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<link href="~/assets/custom/bootstrap-switch.min.css" rel="stylesheet" />
+<script src="~/assets/custom/bootstrap-switch.min.js"></script>
+
+<div class="m-subheader ">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <h3 class="m-subheader__title m-subheader__title--separator">Mestrado Regular</h3>
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item m-nav__item--home">
+                    <a href="/" class="m-nav__link m-nav__link--icon">
+                        <i class="m-nav__link-icon la la-home"></i>
+                    </a>
+                </li>
+                <li class="m-nav__separator">-</li>
+                <li class="m-nav__item">
+                    <a href="/portal/pedido/viewpedidos.aspx" class="m-nav__link">
+                        <span class="m-nav__link-text">Mestrado Regular</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="row-principal">
+    <div class="col-xl-12">
+        <div class="m-portlet m-portlet--full-height">
+            <!--begin: Portlet Head-->
+            <div class="m-portlet__head">
+                @*
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">
+                            Pedido:
+                            <span id="nPedido" runat="server"></span>
+                            <input type="hidden" runat="server" id="listaPreco" />
+                        </h3>
+                    </div>
+                </div>*@
+                <div class="m-portlet__head-tools">
+                    <ul class="m-portlet__nav">
+                        <li class="m-portlet__nav-item">
+                            @*<a href="#" data-toggle="m-tooltip" class="m-portlet__nav-link m-portlet__nav-link--icon" data-direction="left" data-width="auto" title="" data-original-title="Get help with filling up this form">
+                                <i class="flaticon-info m--icon-font-size-lg3"></i>
+                            </a>*@
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--end: Portlet Head-->
+            <!--begin: Form Wizard-->
+            <div class="m-wizard m-wizard--2 m-wizard--success m-wizard--step-first" id="m_wizard">
+                <!--begin: Message container -->
+                <div class="m-portlet__padding-x">
+                    <!-- Here you can put a message or alert -->
+                </div>
+                <!--end: Message container -->
+                <!--begin: Form Wizard Head -->
+                <div class="m-wizard__head m-portlet__padding-x">
+                    <!--begin: Form Wizard Progress -->
+                    <div class="m-wizard__progress">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                    <!--end: Form Wizard Progress -->
+                    <!--begin: Form Wizard Nav -->
+                    <div class="m-wizard__nav">
+                        <div class="m-wizard__steps">
+                            <div class="m-wizard__step m-wizard__step--current" m-wizard-target="m_wizard_form_step_1">
+                                <a href="#" class="m-wizard__step-number">
+                                    <span>
+                                        <i class="fa flaticon-search"></i>
+                                    </span>
+                                </a>
+                                <div class="m-wizard__step-info">
+                                    <div class="m-wizard__step-title">
+                                        1. Formulário para Inscrição
+                                    </div>
+                                    <div class="m-wizard__step-desc">
+                                        Preencha todas as informações para a inscrição
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-wizard__step" m-wizard-target="m_wizard_form_step_2">
+                                <a href="#" class="m-wizard__step-number">
+                                    <span>
+                                        <i class="fa flaticon-profile"></i>
+                                    </span>
+                                </a>
+                                <div class="m-wizard__step-info">
+                                    <div class="m-wizard__step-title">
+                                        2. Avaliação do Currículo
+                                    </div>
+                                    <div class="m-wizard__step-desc">
+                                        Apenas os itens acompanhados de documentação comprobatória serão pontuados
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-wizard__step" m-wizard-target="m_wizard_form_step_3">
+                                <a href="#" class="m-wizard__step-number">
+                                    <span>
+                                        <i class="fa fa-file-pdf-o"></i>
+                                    </span>
+                                </a>
+                                <div class="m-wizard__step-info">
+                                    <div class="m-wizard__step-title">
+                                        3. Documentos
+                                    </div>
+                                    <div class="m-wizard__step-desc">
+                                        Anexe todos os documentos necessários, de acordo com o que o edital exige
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end: Form Wizard Nav -->
+                </div>
+                <hr />
+                <!--end: Form Wizard Head -->
+                <!--begin: Form Wizard Form-->
+                <div class="m-wizard__form">
+
+                    <div class="m-form m-form--label-align-left- m-form--state-" id="m_form" novalidate="novalidate">
+                        <!--begin: Form Body -->
+                        <div class="m-portlet__body">
+                            <!--begin: Form Wizard Step 1-->
+                            <div class="m-wizard__form-step m-wizard__form-step--current" id="m_wizard_form_step_1">
+                                <div class="row col-lg-12">
+                                    <h5>Dados Pessoais</h5>
+                                </div>
+                                <div class="m-separator"></div>
+                                <div class="form-group m-form__group row col-lg-12">
+                                    <div class="col-lg-3 text-right">
+                                        <label class="form-control-label m--margin-top-5">Nome:</label>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <asp:TextBox runat="server" CssClass="form-control" ID="name"></asp:TextBox>
+                                        <input type="text" class="form-control" id="nome">
+
+                                    </div>
+                                </div>
+                                @*
+                                <div class="form-group m-form__group row col-lg-12">
+                                    <div class="col-lg-3 text-right">
+                                        <label class="form-control-label m--margin-top-5">Data Nascimento:</label>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <asp:TextBox runat="server" ID="born_at" CssClass="form-control"></asp:TextBox>
+                                        <input class="datepicker" id="data_nascimento" data-date-format="mm/dd/yyyy">
+                                        @*<input type="text" runat="server" id="" placeholder="01/02/1990" class="form-control" />*@
+                                   @* </div>
+                                </div>*@
+                                <div class="form-group m-form__group row col-lg-12">
+                                    <div class="col-lg-3 text-right">
+                                        <label class="form-control-label m--margin-top-5">Email:</label>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                                        @*<input type="text" runat="server" id="" placeholder="example@gmail.com" class="form-control" />*@
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row col-lg-12">
+                                    <div class="col-lg-3 text-right">
+                                        <label class="form-control-label m--margin-top-5">Telefone:</label>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <asp:TextBox runat="server" ID="office" CssClass="form-control"></asp:TextBox>
+                                        <input type="text" runat="server" id="telefone" placeholder="(DD)9999-9999" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="row col-lg-12">
+                                    <h5>Formação superior</h5>
+                                </div>
+                                <div class="m-separator"></div>
+                                <div class="form-group m-form__group row col-lg-12">
+                                    <div class="col-lg-6 text-right">
+                                        <label class="form-control-label m--margin-top-5">Curso:</label>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <asp:DropDownList runat="server" ID="ddlState" CssClass="form-control m-input m-select2" DataTextField="state" DataValueField="id"></asp:DropDownList>
+                                        <select class="form-control" id="curso">
+                                            <option value="0" selected>Selecione o curso</option>
+                                            <option value="1">Ciência da Computação</option>
+                                            <option value="2">Sistemas de Informação</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row col-lg-12">
+                                    <div class="col-lg-6 text-right">
+                                        <label class="form-control-label m--margin-top-5">Ano de conclusão ou de previsão para conclusão:</label>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <asp:TextBox runat="server" ID="born_at" CssClass="form-control"></asp:TextBox>
+                                        <input class="form-control form-control-inline input-medium date-picker" id="ano_conclusao" data-date-format="mm/dd/yyyy">
+                                        @*<input type="text" runat="server" id="" placeholder="01/02/1990" class="form-control" />*@
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row col-lg-12">
+                                    <div class="col-lg-6 text-right">
+                                        <label class="form-control-label m--margin-top-5">Instituição:</label>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <asp:TextBox runat="server" ID="address" CssClass="form-control"></asp:TextBox>
+                                        <select class="form-control" id="instituicao">
+                                            <option value="0" selected>Selecione o curso</option>
+                                            <option value="1">Universidade Federal de Uberlândia - UFU</option>
+                                            <option value="2">Universidade Federal de São Paulo - USP</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="m-separator"></div>
+                                <div class="form-group m-form__group row col-lg-12">
+                                    <div class="col-lg-12">
+                                        <label class="form-control-label m--margin-top-5">Foi aluno especial do Programa de Pós-graduação em Ciência da Computação da UFU?</label>
+                                    </div>
+                                    <div class="col-lg-8 text-right">
+                                        <div class="m-radio-inline">
+                                            <label class="m-radio">
+                                                <input type="radio" class="radio1" name="radio1" value="0">
+                                                Não
+                                                <span></span>
+                                            </label>
+                                            <label class="m-radio">
+                                                <input type="radio" class="radio1" name="radio1" value="1">
+                                                Sim
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-separator"></div>
+                                <div class="form-group m-form__group row col-lg-12">
+                                    <div class="col-lg-12">
+                                        <label class="form-control-label m--margin-top-5">
+                                            Tem interesse em concorrer como aluno especial? (caso não seja selecionado como aluno regular e obtenha
+                                            pontuação suficiente para ingressar como aluno especial)
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-8 text-right">
+                                        <div class="m-radio-inline">
+                                            <label class="m-radio">
+                                                <input type="radio" class="radio2" name="radio2" value="0">
+                                                Não
+                                                <span></span>
+                                            </label>
+                                            <label class="m-radio">
+                                                <input type="radio" class="radio2" name="radio2" value="1">
+                                                Sim
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-separator"></div>
+                                <div class="form-group m-form__group row col-lg-12">
+                                    <div class="col-lg-12">
+                                        <label class="form-control-label m--margin-top-5">
+                                            Tem interesse em concorrer a bolsa de estudo, de acordo com o item 8.10.1 do edital? ( o candidato não
+                                            pode ter vínculo empregatício na data do registro da bolsa ; verifique mais requisitos no link:
+                                            <a href="http://www.ppgco.facom.ufu.br/sites/ppgco.facom.ufu.br/files/anexos/regras-concessao-de-bolsas-capes.pdf" target="_blank">
+                                                http://www.ppgco.facom.ufu.br/sites/ppgco.facom.ufu.br/files/anexos/regras-concessao-de-bolsas-capes.pdf
+                                            </a>
+                                            
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-8 text-right">
+                                        <div class="m-radio-inline">
+                                            <label class="m-radio">
+                                                <input type="radio" class="radio3" name="radio3" value="0">
+                                                Não
+                                                <span></span>
+                                            </label>
+                                            <label class="m-radio">
+                                                <input type="radio" class="radio3" name="radio3" value="1">
+                                                Sim
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-separator"></div>
+                                <div class="form-group m-form__group row col-lg-12">
+                                    <div class="col-lg-6 text-right">
+                                        <label class="form-control-label m--margin-top-5">Linha de pesquisa pretendida (apenas uma):</label>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <asp:TextBox runat="server" ID="address" CssClass="form-control"></asp:TextBox>
+                                        <select class="form-control" id="linha_pesquisa">
+                                            <option value="0" selected>Selecione a linha de pesquisa</option>
+                                            <option value="1">Ciência de Dados</option>
+                                            <option value="2">Engenharia de Software</option>
+                                            <option value="3">Inteligência Artificial</option>
+                                            <option value="4">Sistemas de Computação</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row col-lg-12">
+                                    <div class="col-lg-6 text-right">
+                                        <label class="form-control-label m--margin-top-5">Modalidade de vaga</label>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <asp:TextBox runat="server" ID="address" CssClass="form-control"></asp:TextBox>
+                                        <select class="form-control" id="modalidade_vaga">
+                                            <option value="0" selected>Selecione a linha de pesquisa</option>
+                                            <option value="1">Ampla concorrência</option>
+                                            <option value="2">Pessoas sob políticas humanitárias no Brasil</option>
+                                            <option value="3">Pretos, pardos e indígenas</option>
+                                            <option value="4">Pessoas com deficiência</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row col-lg-12" style="text-align: center;">
+                                    <div class="col-lg-12">
+                                        <label class="form-control-label m--margin-top-5">CARTA DE MOTIVAÇÃO</label>
+                                        <p>
+                                            Faça uma apreciação pessoal, em poucas palavras, sobre a evolução de suas atividades acadêmicas e
+                                            profissionais, não repetindo simplesmente informações constantes no seu Curriculum Vitae. Descreva as
+                                            razões para fazer o mestrado acadêmico, o que espera do curso e apreciação das influências do mesmo
+                                            sobre suas atividades profissionais futuras. Especifique os motivos para a escolha da linha de pesquisa.
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-12">
+                                    <textarea class="form-control" id="carta_motivacao" rows="10" maxlength="2000"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end: Form Wizard Step 1-->
+                            <!--begin: Form Wizard Step 2-->
+                            <div class="m-wizard__form-step" id="m_wizard_form_step_2">
+                                <!-- Região para adicionar item ao carrinho  - Inicio -->
+                                <div class="row ">
+                                    <div class="col-lg-12">
+                                        <h5 style="text-align:center;">AVALIAÇÃO DO CURRÍCULO</h5>
+                                        <h6 style="text-align:center;">(APENAS OS ITENS ACOMPANHADOS DE DOCUMENTAÇÃO COMPROBATÓRIA SERÃO PONTUADOS)</h6>
+                                    </div>
+                                    <!--
+                                    <div class="col-lg-9 text-right">
+                                        <a href="javascript:void(0);" id="showProdutos" class="btn btn-success"><i class="fa fa-plus"></i> Adicionar Item </a>
+                                    </div>-->
+
+                                </div>
+                                <div class="m-separator"></div>
+                                <!-- Região para adicionar item ao carrinho - Fim -->
+                                <table class="table table-bordered">
+                                <thead>
+                                 <tr>
+                                    <th style="text-align: center;" class="col-lg-2" scope="row">Item (<strong>ver edital</strong>)</th>
+                                    <td style="text-align: center;" class="col-lg-8">Descrição (<strong>ver edital para detalhes)</strong></td>
+                                    <td style="text-align: center;" class="col-lg-1">Quantidade</td>
+                                    <td style="text-align: center;" class="col-lg-1">Pontuação</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th style="text-align: center;" class="col-lg-2" scope="row">5.2.1.2.2.a)</th>
+                                    <td class="col-lg-8">Monitoria em curso de graduação</td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 60%;" type="number" id="5.2.1.2.2.a)_1"> X 10</td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 100%;" type="number" id="5.2.1.2.2.a)_1_1"></td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: center;" class="col-lg-2" scope="row">5.2.1.2.2.b)</th>
+                                    <td class="col-lg-8">Iniciação científica concluída (com ou sem bolsa)</td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 55%;" type="number" id="5.2.1.2.2.b)_2"> X 50</td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 100%;" type="number" id="5.2.1.2.2.b)_2_2"></td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: center;" class="col-lg-2" scope="row">5.2.1.2.2.c)</th>
+                                    <td class="col-lg-8">Participação no PET (Programa de Educação Tutorial)</td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 60%;" type="number" id="5.2.1.2.2.c)_3"> X 10</td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 100%;" type="number" id="5.2.1.2.2.c)_3_3"></td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: center;" class="col-lg-2" scope="row">5.2.1.2.2.d)</th>
+                                    <td class="col-lg-8">
+                                        Membro de comissão organizadora de eventos acadêmicos/científicos/tecnológicos (<strong>máx. 10 pontos</strong>)
+                                    </td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 60%;" type="number" id="5.2.1.2.2.d)_4"> X 5</td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 100%;" type="number" id="5.2.1.2.2.d)_4_4"></td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: center;" class="col-lg-2" scope="row">5.2.1.2.2.e)</th>
+                                    <td class="col-lg-8">
+                                        Curso Lato Sensu concluído na área de informática (<strong>máx. 40 pontos</strong>)
+                                    </td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 55%;" type="number" id="5.2.1.2.2.e)_5"> X 40</td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 100%;" type="number" id="5.2.1.2.2.e)_5_5"></td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: center;" class="col-lg-2" scope="row">5.2.1.2.3.a)</th>
+                                    <td class="col-lg-8">
+                                        Disciplina de pós-graduação Stricto Sensu com aproveitamento maior que 90% ou conceito A
+                                    </td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 55%;" type="number" id="5.2.1.2.3.a)_6"> X 50</td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 100%;" type="number" id="5.2.1.2.3.a)_6_6"></td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: center;" class="col-lg-2" scope="row">5.2.1.2.3.b)</th>
+                                    <td class="col-lg-8">
+                                        Disciplina de pós-graduação Stricto Sensu com aproveitamento entre 75% e 89% ou conceito B
+                                    </td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 55%;" type="number" id="5.2.1.2.3.b)_7"> X 40</td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 100%;" type="number" id="5.2.1.2.3.b)_7_7"></td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: center;" class="col-lg-2" scope="row">5.2.1.2.4.</th>
+                                    <td class="col-lg-8">
+                                        Experiência Profissional (Industrial) em nível superior, na área de informática (<strong>máx. 20 pontos</strong>)
+                                    </td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 60%;" type="number" id="5.2.1.2.4._8"> X 10</td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 100%;" type="number" id="5.2.1.2.4._8_8"></td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: center;" class="col-lg-2" scope="row">5.2.1.2.5.</th>
+                                    <td class="col-lg-8">
+                                        Experiência Profissional (Acadêmica) em nível superior, na área de informática (<strong>máx. 20 pontos</strong>)
+                                    </td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 60%;" type="number" id="5.2.1.2.5._9"> X 10</td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 100%;" type="number" id="5.2.1.2.5._9_9"></td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: center;" class="col-lg-2" scope="row">5.2.1.2.6.</th>
+                                    <td class="col-lg-8">
+                                        Proficiência na Língua Inglesa de acordo com Resolução 1/2021 (http://www.ppgco.facom.ufu.br/sites/ppgco.facom.ufu.br/files//media/document//sei_ufu_-_2704845_-_resolucao_proficiencia_ppgco.pdf) (<strong>máx. 20 pontos</strong>)
+                                    </td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 60%;" type="number" id="5.2.1.2.6._10"> X 20</td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 100%;" type="number" id="5.2.1.2.6._10_10"></td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: center;" class="col-lg-2" scope="row">5.2.1.2.7.</th>
+                                    <td class="col-lg-8">
+                                        Mobilidade Acadêmica Internacional
+                                    </td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 60%;" type="number" id="5.2.1.2.7._11"> X 20</td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 100%;" type="number" id="5.2.1.2.7._11_11"></td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: center;" class="col-lg-2" scope="row">5.2.1.3.1.a)</th>
+                                    <td class="col-lg-8">
+                                        Publicação em evento qualificado na categoria 1
+                                    </td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 60%;" type="number" id="5.2.1.3.1.a)_12"> X 70</td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 100%;" type="number" id="5.2.1.3.1.a)_12_12"></td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: center;" class="col-lg-2" scope="row">5.2.1.3.1.a)</th>
+                                    <td class="col-lg-8">
+                                        Publicação em evento qualificado na categoria 2
+                                    </td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 60%;" type="number" id="5.2.1.3.1.a)_13"> X 30</td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 100%;" type="number" id="5.2.1.3.1.a)_13_13"></td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: center;" class="col-lg-2" scope="row">5.2.1.3.1.a)</th>
+                                    <td class="col-lg-8">
+                                        Publicação em evento qualificado na categoria 3
+                                    </td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 60%;" type="number" id="5.2.1.3.1.a)_14"> X 10</td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 100%;" type="number" id="5.2.1.3.1.a)_14_14"></td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: center;" class="col-lg-2" scope="row">5.2.1.3.1.b)</th>
+                                    <td class="col-lg-8">
+                                        Publicação em periódico qualificado na categoria 1
+                                    </td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 54%;" type="number" id="5.2.1.3.1.b)_15"> X 100</td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 100%;" type="number" id="5.2.1.3.1.b)_15_15"></td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: center;" class="col-lg-2" scope="row">5.2.1.3.1.b)</th>
+                                    <td class="col-lg-8">
+                                        Publicação em periódico qualificado na categoria 2
+                                    </td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 54%;" type="number" id="5.2.1.3.1.b)_16"> X 50</td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 100%;" type="number" id="5.2.1.3.1.b)_16_16"></td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: center;" class="col-lg-2" scope="row">5.2.1.3.1.b)</th>
+                                    <td class="col-lg-8">
+                                        Publicação em periódico qualificado na categoria 3
+                                    </td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 60%;" type="number" id="5.2.1.3.1.b)_17"> X 20</td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 100%;" type="number" id="5.2.1.3.1.b)_17_17"></td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: center;" class="col-lg-2" scope="row">5.2.1.3.1.d)</th>
+                                    <td class="col-lg-8">
+                                        Premiação de trabalho especificado no item 5.2.1.3.1. a)
+                                    </td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 60%;" type="number" id="5.2.1.3.1.d)_18"> X 30</td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 100%;" type="number" id="5.2.1.3.1.d)_18_18"></td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: center;" class="col-lg-2" scope="row"></th>
+                                    <td class="col-lg-8"></td>
+                                    <td class="col-lg-1 text-right">Total</td>
+                                    <td style="text-align: center;" class="col-lg-1"><input style="text-align:center;width: 100%;" type="number" id="total_step_2"></td>
+                                </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--end: Form Wizard Step 2-->
+                            <!--begin: Form Wizard Step 3-->
+                            <div class="m-wizard__form-step" id="m_wizard_form_step_3">
+                                <div class="row col-lg-12">
+                                    <h5>Mestrado - Edital completo, as informações e instruções pertinentes ao Processo de Seleção serão disponibilizados no endereço eletrônico do PPGCO: <a href="www.ppgco.facom.ufu.br" target="_blank">www.ppgco.facom.ufu.br</a></h5>
+                                </div>
+                                <div class="m-separator"></div>
+                                <div class="form-group m-form__group row col-lg-12">
+                                    <div class="col-lg-12">
+                                        <label class="form-control-label m--margin-top-5">Conforme o item 4.6.2.(do edital citado acima) Caso seja candidato brasileiro:</label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-5 text-right">4.6.2.1. Documento de identidade</div>
+                                        <div class="col-lg-6">
+                                        <div class="form-group m-form__group">
+                                            <div class="custom-file">
+                                                <input type="file" name="file" id="documento_identidade" class="custom-file-input" /><!--accept=".pdf"-->
+                                                <label class="custom-file-label" id="fileLabel" for="file">Escolher arquivo...</label>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="col-lg-1" id="check-cancelar"><img alt="" src="~/img/cancelar.png" /></div>
+                                    </div>
+                                </div>
+                                <div class="m-separator"></div>
+                                <div class="form-group m-form__group row col-lg-12">
+                                      
+                                </div>
+
+                                <div class="form-group m-form__group row col-lg-12">
+                      
+                                </div>
+                            </div>
+                            <!--end: Form Wizard Step 3-->
+                        </div>
+                        <!--end: Form Body -->
+                        <!--begin: Form Actions -->
+                        <div class="m-portlet__foot m-portlet__foot--fit m--margin-top-40">
+                            <div class="m-form__actions">
+                                <div class="row">
+                                    <div class="col-lg-2"></div>
+                                    <div class="col-lg-4 m--align-left">
+                                        <a href="#" class="btn btn-secondary m-btn m-btn--custom m-btn--icon" data-wizard-action="prev">
+                                            <span>
+                                                <i class="la la-arrow-left"></i>
+                                                &nbsp;&nbsp;
+                                                <span>
+                                                    Voltar
+                                                </span>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-4 m--align-right">
+                                        <a href="#" class="btn btn-primary m-btn m-btn--custom m-btn--icon" data-wizard-action="submit">
+                                            <span>
+                                                <i class="la la-check"></i>
+                                                &nbsp;&nbsp;
+                                                <span>
+                                                    Finalizar Inscrição
+                                                </span>
+                                            </span>
+                                        </a>
+                                        @*<asp:LinkButton ID="salvaDadosComprador" Visible="false" runat="server" OnClick="salvaDadosComprador_Click" Text="Salvar"></asp:LinkButton>*@
+                                        <a href="#" class="btn btn-warning m-btn m-btn--custom m-btn--icon" data-wizard-action="next">
+                                            <span>
+                                                <span>
+                                                    Continuar
+                                                </span>
+                                                &nbsp;&nbsp;
+                                                <i class="la la-arrow-right"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end: Form Actions -->
+                    </div>
+                </div>
+                <!--end: Form Wizard Form-->
+            </div>
+            <!--end: Form Wizard-->
+        </div>
+        <div class="m-portlet">
+            <div class="m-form m-form--fit m-form--label-align-right">
+                <div class="m-portlet__body" style="padding-top: 0">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="~/assets/demo/default/custom/components/forms/wizard/wizard.js"></script>
+<script src="../../assets/app/js/bootstrap.bundle.min.js"></script>
+<script src="~/assets/custom/bootstrap-datepicker.pt-BR.js"></script>
+
+<script>
+
+    $('document').ready(function () {
+
+        $("#ano_conclusao").datepicker({
+            language: 'pt-BR',
+            format: 'dd/mm/yyyy',
+            todayHighlight: true,
+            defaultDate: "@DateTime.Now.AddDays(-30).ToString("dd/MM/yyyy")",
+            autoclose: true
+        })
+
+
+    wizard = new mWizard('m_wizard', {
+        startStep: 1, // Initial active step number
+        clickableSteps: true,  // Allow step clicking
+    });
+
+        wizard.on("change", function () {
+           
+                if (wizard.getStep() == 2) {
+                    console.log("Caiu no passo 2");
+                    //savaDadosComprador();
+                    //carregaCarrinho();
+
+                }
+                else if (wizard.getStep() == 3) {
+                    console.log('step', 3);
+                    //$("#<%=ddlBandeiras.ClientID%>").trigger("change");
+                }
+        });
+
+
+        function uploadSheet() {
+
+            //$('#documento_identidade').prop('files')[0].name
+
+            var loja_id = $("#loja_id").val();
+            var filial_id = $("#filial_id").val();
+            if (loja_id == "" || loja_id == null || loja_id == undefined) {
+                swal("Atenção!!", "Selecione uma loja antes de importar a planilha", "warning");
+            }
+            else if (filial_id == "" || filial_id == null || filial_id == undefined) {
+                swal("Atenção!!", "Selecione uma filial antes de importar a planilha", "warning");
+            } else {
+                var file = document.getElementById("file").files[0];
+                var formData = new FormData();
+                formData.append("loja_id", loja_id);
+                formData.append("filial_id", filial_id);
+                formData.append("file", file);
+                
+            }
+
+        }
+
+    $('#documento_identidade').change(function (e) {
+            var fileName = e.target.files[0].name;
+            var file = e.target.files[0];
+            //alert('The file "' + fileName + '" has been selected.');
+
+            console.log("fileName",fileName);
+            console.log("file",file);
+
+            //C:\Pos\Documentos\Mestrado\1_1
+
+            $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("UploadPdf", "Inscricoes")',
+                    //data: formData,
+                    data: { file_upload: fileName, member_id: '@memberId', perfil_id: '@perfilId' },
+                    //contentType: false,
+                    //cache: false,
+                    //processData: false,
+                    beforeSend: function () {
+                        mApp.block("#row-principal", { overlayColor: "#000000", type: "loader", state: "success", message: "Carregando..." });
+                    },
+                    success: function (data) {
+                        mApp.unblock("#row-principal");
+                        if (data.success) {
+                            $("#check-cancelar").children().attr("src",'/img/check-verde.png');
+                            swal({
+                                title: "Sucesso!",
+                                text: data.message,
+                                type: "success",
+                                timer: 3000
+                            });
+                        } else {
+                            swal("Falha ao salvar documento!", data.message, "error");
+                        }
+
+                    },
+                    error: function (data) {
+                        mApp.unblock("#row-principal");
+                        swal("Falha ao salvar documento!", data.message, "error");
+                    }
+            });
+    });
+
+    $('[data-wizard-action="next"]').click(function () {
+
+        console.log("data-wizard-action=\"next\"");
+        if (wizard.getStep() == 2) {
+                console.log("Caiu no passo 2");
+                if (!jsValidaCampos()) {
+                    $('[data-wizard-action="prev"]')[0].click(); //Se faz necessário o uso do 0 entre colchetes, por que a função click() é nativa do javascript, sendo assim não pertence a um objeto jQuery. Se não utilizar [0] para pegar somente o elemento HTML a função click() terá a mesma funcionalidade da trigger().
+		        }
+                //savaDadosComprador();
+                //carregaCarrinho();
+
+        }
+        else if (wizard.getStep() == 3) {
+            console.log('step', 3);
+
+                $("#check-cancelar").children().attr("src",'/img/cancelar.png')
+            /*
+            if (!jsValidaCampos()) {
+                $('[data-wizard-action="prev"]')[0].click(); //Se faz necessário o uso do 0 entre colchetes, por que a função click() é nativa do javascript, sendo assim não pertence a um objeto jQuery. Se não utilizar [0] para pegar somente o elemento HTML a função click() terá a mesma funcionalidade da trigger().
+		    }*/
+            //$("#<%=ddlBandeiras.ClientID%>").trigger("change");
+        }
+    });
+
+
+    $('[data-wizard-action="submit"]').click(function () {
+
+        console.log("data-wizard-action=submit");
+            /*
+            var temp = {
+                nome:$("#nome").val(),
+                email:$("#email").val(),
+                telefone:$("#telefone").val(),
+                curso:$("#curso option:selected").val(),
+                ano_conclusao:$("#ano_conclusao").val(),
+                instituicao:$("#instituicao option:selected").val(),
+                radio1:$("input[name='radio1']:checked").val(),
+                radio2:$("input[name='radio2']:checked").val(),
+                radio3:$("input[name='radio3']:checked").val(),
+                linha_pesquisa:$("#linha_pesquisa option:selected").val(),
+                modalidade_vaga:$("#modalidade_vaga option:selected").val(),
+                carta_motivacao:$("#carta_motivacao").val(),
+                item_1:("#5.2.1.2.2.a)_1").val()
+            }*/
+
+        $.ajax({
+            url: '@Url.Action("FinalizarInscricao", "Inscricoes")',
+            type: 'POST',
+            //contentType: false,
+            //cache: false,
+            //processData: false,
+            data: {
+                nome:$("#nome").val(),
+                email:$("#email").val(),
+                telefone:$("#telefone").val(),
+                curso:parseInt($("#curso option:selected").val()),
+                ano_conclusao:$("#ano_conclusao").val(),
+                instituicao:parseInt($("#instituicao option:selected").val()),
+                radio1:parseInt($("input[name='radio1']:checked").val()),
+                radio2:parseInt($("input[name='radio2']:checked").val()),
+                radio3:parseInt($("input[name='radio3']:checked").val()),
+                linha_pesquisa:parseInt($("#linha_pesquisa option:selected").val()),
+                modalidade_vaga:parseInt($("#modalidade_vaga option:selected").val()),
+                carta_motivacao:$("#carta_motivacao").val()
+            },
+            beforeSend: function () {
+                    mApp.block("#body", { overlaycolor: "#000000", type: "loader", state: "success", message: "Aguarde ..." });
+            },
+            success: function (data) {
+                mApp.unblock("#row-principal");
+
+                if (data.success) {
+                swal({ title: "Sucesso!", text: data.message, type: "success" }).then(function () {
+                    window.location.href = '@Url.Action("Index", "Solicitacoes")';
+                });
+                } else {
+                    swal("Atenção!", data.message, "error");
+                }
+            },
+            error: function (txt) {
+                mApp.unblock("#row-principal");
+                swal("Falha ao finalizar a inscrição!", "Tente novamente mais tarde.", "error")
+            }
+        });
+    });
+
+
+        function jsValidaCampos() {
+            /*
+            $("#nome").val()
+            $("#email").val()
+            $("#telefone").val()
+            $("#curso option:selected").val()
+            $("#ano_conclusao").val()
+            $("#instituicao option:selected").val()
+            $("input[name='radio1']:checked"). val();
+            $("input[name='radio2']:checked"). val();
+            $("input[name='radio3']:checked"). val();
+            $("#linha_pesquisa option:selected").val()
+            $("#modalidade_vaga option:selected").val()
+            $("#carta_motivacao").val()
+            
+
+            if ($("#nome").val() == "") {
+                swal("Atenção!", "Preencha o nome!", "warning");
+                return false;
+            } else if ($("#email").val() == "") {
+                swal("Atenção!", "Preencha o email!", "warning");
+                return false;
+            }else if ($("#telefone").val() == "") {
+                swal("Atenção!", "Preencha o telefone!", "warning");
+                return false;
+            } else if ($("#curso option:selected").val() == "0") {
+                swal("Atenção!", "Selecione o curso!", "warning");
+                return false;
+            }else if ($("#ano_conclusao").val() == "") {
+                swal("Atenção!", "Selecione o ano de conclusão!", "warning");
+                return false;
+            } else if ($("#instituicao option:selected").val() == "") {
+                swal("Atenção!", "Selecione a instituição!", "warning");
+                return false;
+            }else if ($("input[name='radio1']:checked").val() == undefined) {
+                swal("Atenção!", "Selecione a opção, se você foi aluno especial do Programa de Pós-graduação em Ciência da Computação da UFU!", "warning");
+                return false;
+            }else if ($("input[name='radio2']:checked").val() == undefined) {
+                swal("Atenção!", "Selecione a opção, se você tem interesse em concorrer como aluno especial!", "warning");
+                return false;
+            }else if ($("input[name='radio3']:checked").val() == undefined) {
+                swal("Atenção!", "Selecione a opção, se você tem interesse em concorrer a bolsa de estudo!", "warning");
+                return false;
+            }else if ($("#linha_pesquisa option:selected").val() == "0") {
+                swal("Atenção!", "Selecione a linha de pesquisa pretendida!", "warning");
+                return false;
+            }else if ($("#modalidade_vaga option:selected").val() == "0") {
+                swal("Atenção!", "Selecione a modadlidade da vaga!", "warning");
+                return false;
+            }else if ($("#carta_motivacao").val() == "") {
+                swal("Atenção!", "Preencha a carta de motivação!", "warning");
+                return false;
+            }*/
+
+            return true;
+        }
+
+
+    });
+
+
+</script>

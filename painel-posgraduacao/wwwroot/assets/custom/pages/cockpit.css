@@ -1,0 +1,51 @@
+﻿
+.table.table-cockpit th,
+.table.table-cockpit td {
+    text-align: center
+}
+
+.table.table-cockpit th:first-child,
+.table.table-cockpit td:first-child {
+    font-weight: bold;
+    text-align: left;
+}
+
+.table.table-cockpit tfoot td {
+    font-weight: bold;
+    background: #9f9f9f;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.table.table-cockpit tfoot td:first-child {
+    border-bottom-left-radius: 4px;
+}
+
+.table.table-cockpit tfoot td:last-child {
+    border-bottom-right-radius: 4px;
+}
+
+.table.table-cockpit .btn {
+    padding: 3px 15px;
+    background: #fff;
+    font-family: 'Roboto', sans-serif;
+}
+
+.table.table-cockpit .btn:hover,
+.table.table-cockpit .btn:active,
+.table.table-cockpit .btn:focus {
+    background: #34bfa3;
+}
+
+.table.table-cockpit .label {
+    cursor: default;
+    padding: 3px 15px;
+    display: inline-block;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    font-weight: 400;
+    text-align: center;
+}
+

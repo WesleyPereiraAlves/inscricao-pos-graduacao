@@ -1,0 +1,108 @@
+﻿@{
+	ViewData["Title"] = "Solicitacões";
+
+	List<Inscricao> solicitacoes = ViewBag.Solicitacoes;
+}
+
+<div class="m-subheader" style="position: relative;left: 104px;">
+	<div class="d-flex align-items-center">
+		<div class="mr-auto">
+			<h3 class="m-subheader__title m-subheader__title--separator">@ViewBag.Title</h3>
+			<ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+				<li class="m-nav__item m-nav__item--home">
+					<a href="@Url.Action("Index", "Home" )" class="m-nav__link m-nav__link--icon navigate">
+						<i class="m-nav__link-icon la la-home"></i> Home
+					</a>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+</div>
+
+
+@if(solicitacoes.Count() > 0){
+
+
+	<div class="row" style="overflow-x:scroll;position: relative;">
+	<div class="col-xl-12">
+		<div class="m-portlet">
+			<div class="table-scrollable" >
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>Nome do Candidato</th>
+							<th>Data da Inscrição</th>
+							<th>Pós Graduação</th>
+							<th>Linha de Pesquisa</th>
+							<th>Status da Inscrição</th>
+						</tr>
+					</thead>
+					<tbody>
+ 
+						<tr>
+							@foreach (var item in solicitacoes)
+							{
+
+							<td>@item.NomeCandidato</td>
+							<td>@item.DataCriacao</td>
+							<td>@item.PosGraduacao</td>
+							<td>@item.LinhaPesquisa</td>
+							<td>@item.StatusInscricao</td>
+							}
+						</tr>
+				
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+}
+else
+{
+	<br />
+	<br />
+
+	<div class="m-alert m-alert--icon m-alert--outline alert alert-info alert-dismissible fade show" role="alert" style="position: relative;left: 122px;">
+		<div class="m-alert__icon">
+			<i class="la la-warning"></i>
+		</div>
+		<div class="m-alert__text">
+			<strong>Ops!</strong> Nenhum resultado encontrado.
+		</div>
+	</div>
+
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+
+}
+
